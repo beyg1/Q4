@@ -1,0 +1,23 @@
+[project]
+name = "console"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "beyg1", email = "abdulrubbaig1@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "google-generativeai>=0.8.5",
+    "openai-agents>=0.0.13",
+    "python-dotenv>=1.1.0",
+]
+
+[project.scripts]
+console = "console.main:main"    #console will run main.py's main function.
+console_agent = "console:main"   #console_agent will run the agent-based main function in init.py.
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
