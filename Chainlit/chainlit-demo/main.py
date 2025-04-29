@@ -24,44 +24,42 @@ model = OpenAIChatCompletionsModel(
 
 agent: Agent = Agent(name="Assistant", instructions="You are a helpful assistant for an ai application", model=model) #agent with instructions and model
 
-@cl.on_chat_start
-async def start():
-    cl.user_session.set("history", [])
+@cl.on_chat_start 
+async def start(): 
+    cl.user_session.set("history", []) # set the chat history to empty list
 
 
-@cl.on_message  # decorator function
-async def main(message: cl.Message):
+@cl.on_message  
+async def main(message: cl.Message): # main function to handle the incoming message
+    # Get the history from the user session
 
     # Show something on the screen
-    msg = cl.Message(
+    msg = cl.Message( 
         content="",
     )
     await msg.send()
 
     # Step 1:
     print("\nStep 1:Get History and add User Message\n")
-    history = cl.user_session.get("history")  # [...]
+    history = cl.user_session.get("history")  # Get history from user session
     print("History: ", history)
     print("\nStep 2: Add User Messaged to History\n")
-    history.append({"role": "user", "content": message.content})  # [{}]
+    history.append({"role": "user", "content": message.content})  # Add user message to history
     print("Updated History: ", history)
 
     # Agent Call
-    agent_response = Runner.run_streamed(agent, history)
-    async for event in agent_response.stream_events():
-        if event.type == "raw_response_event" and isinstance(event.data, ResponseTextDeltaEvent):
-            raw_text = event.data.delta
-            await msg.stream_token(raw_text)
-
-    # msg.content = agent_response.final_output
-    # await msg.update()
+    agent_response = Runner.run_streamed(agent, history) # Run the agent with the history
+    async for event in agent_response.stream_events(): # Stream the events from the agent response
+        if event.type == "raw_response_event" and isinstance(event.data, ResponseTextDeltaEvent): # Check if the event is a raw response event
+            raw_text = event.data.delta # Get the raw text from the event
+            await msg.stream_token(raw_text) # Stream the token to the message
 
     # Step 2:
     # Get History and add Agent Message
     print("\nStep 3: Get History and add Agent Message\n")
     history.append(
-        {"role": "assistant", "content": agent_response.final_output})
+        {"role": "assistant", "content": agent_response.final_output}) # Add agent message to history
     # Step 3:
     # Update History
     print("\nStep 4: Update History\n")
-    cl.user_session.set("history", history)
+    cl.user_session.set("history", history) # Update the history in the user session
