@@ -28,25 +28,25 @@ print(result.final_output) # outputting the final result of the agent's response
 
 #interactive chat loop
  
-history = []
+history = [] # conversation history
 # [{"role": "user", "content": "?"}, {"role": "assistant", "content": ""}]
 while True:
         # Input
-        user_input = input("Enter your message or simply Type 'exit' to quit: ")
+        user_input = input("Enter your message or simply Type 'exit' to quit: ") 
         
-        if user_input.lower() == "exit":
+        if user_input.lower() == "exit":  # exit the loop
             print("Exiting...")
-            break
+            break 
         
-        history.append({"role": "user", "content": user_input})
+        history.append({"role": "user", "content": user_input})  # user's convo history stored
 
         # Agent Loop
         response = Runner.run_sync(
             starting_agent=agent,
-            input=history
+            input=history     # user's conversation history
         )
 
-        history.append({"role": "assistant", "content": response.final_output})
+        history.append({"role": "assistant", "content": response.final_output})  # assistant's response also added to the conversation history
 
         print("assistant: ", response.final_output)
 
