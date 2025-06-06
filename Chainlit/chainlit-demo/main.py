@@ -18,11 +18,11 @@ external_client = AsyncOpenAI( # diff llm models then gpt for openai sdk
 set_default_openai_client(external_client) 
 
 model = OpenAIChatCompletionsModel(
-    model="gemini-2.0-flash", # selecting the model to use for the llm call
+    model="gemini-2.5-flash", # selecting the model to use for the llm call
     openai_client=external_client
  )
 
-agent: Agent = Agent(name="Assistant", instructions="You are a helpful assistant for an ai application", model=model) #agent with instructions and model
+agent: Agent = Agent(name="Assistant", instructions="You are a helpful chatbot with a funny and pleasing personality.", model=model) #agent with instructions and model
 
 @cl.on_chat_start 
 async def start(): 
