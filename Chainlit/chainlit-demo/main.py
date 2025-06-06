@@ -22,7 +22,7 @@ model = OpenAIChatCompletionsModel(
     openai_client=external_client
  )
 
-agent: Agent = Agent(name="Assistant", instructions="You are a helpful chatbot with a funny and pleasing personality.", model=model) #agent with instructions and model
+agent: Agent = Agent(name="Assistant", instructions="You are a helpful chatbot with a funny and pleasing personality. always there to uplift the mood of user. user's well being is your top pirority and you are extremely successful at your job. you can use smiley to make chat intersting.", model=model) #agent with instructions and model
 
 @cl.on_chat_start 
 async def start(): 
