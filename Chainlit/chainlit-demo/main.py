@@ -18,7 +18,7 @@ external_client = AsyncOpenAI( # diff llm models then gpt for openai sdk
 set_default_openai_client(external_client) 
 
 model = OpenAIChatCompletionsModel(
-    model="gemini-2.5-flash", # selecting the model to use for the llm call
+    model="gemini-2.5-flash-preview-05-20", # selecting the model to use for the llm call
     openai_client=external_client
  )
 
