@@ -1,4 +1,4 @@
-setup a chainlit cui for agents maded in openai sdk
+setup a chainlit cui for agents made in openai sdk
 1. uv init chainlit-demo
 2. cd chainlit-demo
 3. uv venv
