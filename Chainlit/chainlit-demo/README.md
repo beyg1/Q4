@@ -7,4 +7,4 @@ setup a chainlit cui for agents maded in openai sdk
 6. chainlit test command => chainlit hello
 7. copy paste the basic chainlit code from pure python sectionof chainlit docs.
 8. run by uv run chainlit run main.py -w
-9. error comes of atleast one on chat start message, now update the code accordingly
+9. error comes of atleast one on chat start message, now update the code accordingly..
