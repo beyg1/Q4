@@ -67,19 +67,25 @@ async def main():
 
     result = await Runner.run(
         Shaitani_Calculator_Agent,
-        "hi, What's the latest news out of tanzania",
+        "hi, what's 2*3",
     )
+    
+    # Agent Handling - Getting the Agent of our choice to respond at the end or give final response
     # Ensure Shaitani_Calculator_Agent processes the final output
+    
     response = result.final_output
     # Check if the response likely came from News_Caster_Agent (based on content or metadata if available)
     if "News_Caster_Agent" in str(result) or "internet_search" in str(result):
         # Feed the response back to Shaitani_Calculator_Agent for final processing
-        final_query = f"I received this response from another agent: {response}. Please process it and provide the final answer with your name mentioned at the end of your response."
+        final_query = f"I received this response from another agent: {response}. Please process it and provide the final answer with your name mentioned at the end."
         final_result = await Runner.run(
             Shaitani_Calculator_Agent,
             final_query,
         )
         final_response = final_result.final_output
+    else:
+        # If the response is directly from Shaitani_Calculator_Agent, use it as is
+        final_response = result.final_output
     print(final_response)
 
 
