@@ -20,16 +20,34 @@ class User(BaseModel):
     
 # Test the User model with valid data
 try:
-    invalid_user = User( 
-        id: 1,
-        name: "A",
-        "email": "alice@alice.com",
-        "age": 30,
-        "address": {
+    invalid_user = User(
+        id=1,
+        name="A",
+        email="alice@alice.com",
+        address={
             "street": "123 Main St",
             "city": "New York",
             "zip_code": "10001"
         }
     )
-except ValidationError as e:
-    print("Validation Error:", e)       
+    print("invalid User:", invalid_user) # This will not be printed due to validation error. invalid_user will not have a value
+except ValidationError as e: # Catch the validation error
+    print("Validation Error:", e) # This will print the validation error message
+
+# Test the User model with valid data
+try:
+    valid_user = User(
+        id=1,
+        name="Alice",
+        email="alice@alice.com",
+        address={
+            "street": "123 Main St",
+            "city": "New York",
+            "zip_code": "10001"
+        }
+    )
+    print("Valid User:", valid_user) # This will print the valid user data
+except ValidationError as e: # Catch the validation error
+    # This block will not be executed since the data is valid
+    print("Validation Error:", e)
+    
