@@ -6,3 +6,6 @@ run it by uv run pydantic1.py
 
 create an example of Nested Models in pydantic2.py
 run it by uv run pydantic2.py
+
+create an example of Custom Validators in pydantic3.py
+run it by uv run pydantic3.py
