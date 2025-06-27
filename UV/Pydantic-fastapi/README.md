@@ -9,3 +9,6 @@ run it by uv run pydantic2.py
 
 create an example of Custom Validators in pydantic3.py
 run it by uv run pydantic3.py
+
+create a full blown fastapi app
+run it by fastapi dev main.py

@@ -47,9 +47,9 @@ async def chat(chat_message: ChatMessage):
     """Endpoint to create a chat message."""
     # Here you would typically process the chat message, e.g., save it to a database or pass it to a chat bot service
     # For this example, we will just return the same message as a response
-    if not chat_message.text.strip(): # Check if the message is empty
+    if not chat_message.message.strip(): # Check if the message is empty
         raise HTTPException(status_code=400, detail="Message cannot be empty") # Raise an error if the message is empty
-    reply_text = f"Hello, {ChatMessage.user_id}! You said: '{ChatMessage.text}'. How can I assist you today?"
+    reply_text = f"Hello, {chat_message.user_id}! You said: '{chat_message.message}'. How can I assist you today?"
     # Create a response object with the same user_id and message, and include metadata
     response = ChatResponse(
         user_id=chat_message.user_id,
