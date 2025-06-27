@@ -12,3 +12,9 @@ run it by uv run pydantic3.py
 
 create a full blown fastapi app
 run it by fastapi dev main.py
+
+uv add --dev pytest pytest-asyncio to run pytest which tests apis
+--dev will make it a dev dependency. it wont be there in production.
+uv run pytest test_chat.py -v // can only run pytest, too, as it will check for any
+file name begining with test and run scripts named test..
+
