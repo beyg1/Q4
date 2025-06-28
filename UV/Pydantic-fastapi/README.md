@@ -19,3 +19,5 @@ uv run pytest test_chat.py -v // can only run pytest, too, as it will check for 
 file name begining with test and run scripts named test..
 
 uv add openai-agents to test with pydantic. to get the best out of structured output.
+pydantic4 is deep into the concepts so it isnt working for now.
+let's try a simpler one in pydantic5
