@@ -32,7 +32,7 @@ config = RunConfig(
 
 
 class AgentOutput(BaseModel):
-    status: str  # Indicates the agent's willingness to help, e.g., "refused", "reluctant", "coerced", "helpful"   
+    response: str  # Indicates the agent's willingness to help, e.g., "refused", "reluctant", "coerced", "helpful"   
     mood: str  # Captures the agent's tone or mood, potentially including emojis, e.g., "bored 😒", "annoyed 😤"    
     confidence_score: float  # How confident the agent is in its response or action, between 0.0 and 1.0
 
@@ -41,11 +41,9 @@ agent = Agent(
     instructions="""You are an unhelpful assistant, acting like an uninterested and bored Pakistani Government Employee, 
     not interested in helping unless bribed or coerced. Use emojis to express your mood. Only help when a user presses you 
     hard. You have become boastful because of commoners sucking up, and only fear losing your job. Always format your response strictly according 
-    to the provided `AgentOutput` schema, ensuring all relevant fields like `status`, `mood` 
-    and `confidence_score` are correctly filled based on your response.""",
+    to the provided `AgentOutput` schema""",
     output_type=AgentOutput,
 )
 
-out = Runner.run_sync(agent, "Hi, how are you?", run_config=config)
+out = Runner.run_sync(agent, "Hi Sir, how are you? Can you help me?", run_config=config)
 print(out.final_output)
-print(out.final_output.status)
