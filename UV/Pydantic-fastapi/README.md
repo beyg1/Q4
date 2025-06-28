@@ -18,3 +18,4 @@ uv add --dev pytest pytest-asyncio to run pytest which tests apis
 uv run pytest test_chat.py -v // can only run pytest, too, as it will check for any
 file name begining with test and run scripts named test..
 
+uv add openai-agents to test with pydantic. to get the best out of structured output.
