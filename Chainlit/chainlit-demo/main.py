@@ -30,21 +30,21 @@ async def start():
 
 
 @cl.on_message  
-async def main(message: cl.Message): # main function to handle the incoming message
-    history = cl.user_session.get("history")
-    history.append({"role": "user", "content": message.content})
+async def main(message: cl.Message): # Entry point for incoming user messages
+    history = cl.user_session.get("history") # Retrieve conversation history
+    history.append({"role": "user", "content": message.content})  # append the user message to the history
 
-    msg = cl.Message(content="")
-    await msg.send()
+    msg = cl.Message(content="") # create a new empty message to get agent response
+    await msg.send() # Send initial empty message to display UI placeholder
 
-    agent_response = Runner.run_streamed(agent, history)
-    full_response = ""
-    async for event in agent_response.stream_events():
-        if event.type == "raw_response_event" and isinstance(event.data, ResponseTextDeltaEvent):
-            raw_text = event.data.delta
-            if raw_text:
-                full_response += raw_text
-                await msg.stream_token(raw_text)
+    agent_response = Runner.run_streamed(agent, history) # Run the agent asynchrously with the conversation history
+    full_response = "" # Empty container to collect all response parts
+    async for event in agent_response.stream_events(): # Stream the events from the agent response
+        if event.type == "raw_response_event" and isinstance(event.data, ResponseTextDeltaEvent): # Check if the event is a raw response event
+            raw_text = event.data.delta # Get the raw text from the event
+            if raw_text: # If the raw text(delta) is not empty
+                full_response += raw_text # Append the raw text to the full response
+                await msg.stream_token(raw_text) # Stream the token to the user
 
-    history.append({"role": "assistant", "content": full_response})
-    cl.user_session.set("history", history)
+    history.append({"role": "assistant", "content": full_response}) # Append the full response to the history
+    cl.user_session.set("history", history) # Update the chat history in the user session
