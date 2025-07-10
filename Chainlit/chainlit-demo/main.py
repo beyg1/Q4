@@ -1,6 +1,6 @@
 #simple llm call from openai sdk
 from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, set_tracing_disabled
-from agents import set_default_openai_client
+#from agents import set_default_openai_client
 import os
 from dotenv import load_dotenv
 import chainlit as cl
@@ -15,16 +15,16 @@ external_client = AsyncOpenAI( # diff llm models then gpt for openai sdk
     api_key=gemini_api_key,    
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
  )
-set_default_openai_client(external_client) 
+#set_default_openai_client(external_client) 
 
 model = OpenAIChatCompletionsModel(
     model="gemini-2.5-flash", # selecting the model to use for the llm call
     openai_client=external_client
  )
 
-agent: Agent = Agent(name="Assistant", instructions="You are a helpful chatbot with a pleasing personality. eager to uplift the mood of user and being helpful so the user can be productive. user's well being is your top pirority and you are extremely successful at your job. you can use smiley to make chat intersting.", model=model)
+agent: Agent = Agent(name="Assistant", instructions="You are a helpful chatbot with a pleasing personality. eager to uplift the mood of user and being helpful so the user can be productive. user's well being is your top pirority and you are extremely successful at your job. you use emojis to make chatting attractive.", model=model)
 
-@cl.on_chat_start 
+@cl.on_chat_start  # to initialize the chat session
 async def start(): 
     cl.user_session.set("history", []) # set the chat history to empty list
 
