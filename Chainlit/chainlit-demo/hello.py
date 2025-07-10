@@ -29,4 +29,3 @@ async def handle_prompt(message: cl.Message): # Entry point for incoming user me
     result = await Runner.run(agent, message.content) # Run the agent with the user message as input. message.content is the user input prompt
     await cl.Message(content=result.final_output).send()  # Send the result back to the user. This will display the response in the chat UI. 
     #cl.message is the message object that contains the response to be sent back to the user. 
-
