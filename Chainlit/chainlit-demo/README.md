@@ -8,4 +8,4 @@ setup a chainlit cui for agents made in openai sdk
 7. copy paste the basic chainlit code from pure python sectionof chainlit docs.
 8. run by uv run chainlit run main.py -w
 9. Made simple hello.py with chainlit without any complex logic. to understand the working.
-10. Made hello1.py with chat history.
+10. Made hello1.py with chat history. this can also work as passing context to the LLM.
